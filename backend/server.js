@@ -1,6 +1,7 @@
 import koa from "koa";
 import koaRouter from "koa-router";
 import bodyParser from "koa-bodyparser";
+import cors from "@koa/cors";
 import { createProfile, login } from "./service/userService.js";
 import { addItem, editItem, getItem, getItems, removeItem } from "./service/inventoryService.js";
 import { addItemToCart, removeItemFromCart, viewCart } from "./service/cartService.js";
@@ -8,19 +9,20 @@ import { addItemToWishlist, removeItemFromWishlist, viewWishlist } from "./servi
 import { createPromotion, getPromotions, purchasePromotion } from "./service/promotionService.js";
 
 const app = new koa();
+app.use(cors({origin: '*'}));
 const router = new koaRouter();
 app.use(bodyParser());
 
 router.post('/login', login);
 router.post('/users', createProfile);
 
-router.post('/users/:email/cart/item/:itemId', addItemToCart);
+router.post('/users/:email/cart/:itemId', addItemToCart);
 router.get('/users/:email/cart', viewCart);
-router.delete('/users/:email/cart/item/:itemId', removeItemFromCart);
+router.delete('/users/:email/cart/:itemId', removeItemFromCart);
 
-router.post('/users/:email/wishlist/item/:itemId', addItemToWishlist);
+router.post('/users/:email/wishlist/:itemId', addItemToWishlist);
 router.get('/users/:email/wishlist', viewWishlist);
-router.delete('/users/:email/wishlist/item/:itemId', removeItemFromWishlist);
+router.delete('/users/:email/wishlist/:itemId', removeItemFromWishlist);
 
 router.post('/inventory/items', addItem);
 router.get('/inventory/items', getItems);
@@ -35,4 +37,4 @@ router.put('/promotions/:id/purchase', purchasePromotion);
 app.use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(3000, () => console.log('app running on 3000'))
+app.listen(5000, () => console.log('app running on 5000'))
