@@ -39,13 +39,14 @@ export default function TraderHome() {
         }
     }
 
-    const handleCreateItem = (item) => {
+    const handleCreateItem = (e) => {
+        e.preventDefault();
         console.log(item)
         createItem(item)
             .then(res => {
                 res.data === 'Item already exists!' ?
                     alert('Item aleardy exists with id ID you have entered!') :
-                    handleFetchItems();
+                   handleFetchItems()
             })
             .catch(error => alert('Something went wrong'))
     }
@@ -127,7 +128,7 @@ export default function TraderHome() {
                     <button type="button" onClick={() => handleEditItem(item)}>
                     Edit Item
                     </button> :
-                    <button onClick={() => handleCreateItem(item)}>
+                    <button type="button" onClick={handleCreateItem}>
                         Create Item
                     </button>
                 }   

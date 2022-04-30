@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { fetchCart, removeItemFromCart } from "../API/api";
+import { fetchWishlist, removeItemFromWishlist } from "../API/api";
 
-export default function Cart() {
+export default function Wishlist() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -10,15 +10,15 @@ export default function Cart() {
 
     const handleFetchCart = () => {
         const email = localStorage.getItem('email');
-        fetchCart(email)
+        fetchWishlist(email)
             .then(res => setItems(res.data))
             .catch(error => alert('Something went wrong'));
     }
 
-    const handleRemoveFromCart = (id) => {
+    const handleRemoveFromWishlist = (id) => {
         const email = localStorage.getItem('email');
-        removeItemFromCart(email, id)
-            .then(res => handleFetchCart())
+            removeItemFromWishlist(email, id)
+            .then(() => handleFetchCart())
             .catch(error => console.log())
     }
 
@@ -49,7 +49,7 @@ export default function Cart() {
                         <td>{item.details}</td>
                         <td>{item.price}</td>
                         <td>
-                            <button className="btn btn-primary" onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
+                            <button className="btn btn-primary" onClick={() => handleRemoveFromWishlist(item.id)}>Remove</button>
                         </td>
                         </tr>
                     )}
