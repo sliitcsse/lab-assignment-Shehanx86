@@ -17,7 +17,7 @@ Users.prototype.createProfile = function(name, email, password, role) {
 Users.prototype.authenticateUser = function(email, password){
     const user = this.users.find(user => user.email === email);
     if (!user) return 'auth fail';
-    return user.password === password ? user.role : 'auth fail';
+    return user.password === password ? user : 'auth fail';
 }
 
 Users.prototype.getUserByEmail = function(email) {

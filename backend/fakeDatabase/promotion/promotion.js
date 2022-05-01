@@ -1,14 +1,18 @@
 import Items from "../items/items.js";
 
 export default class Promotion {
-    constructor(name, price, items){
+    constructor(id, name, price, item){
+        this.id = id;
         this.name = name;
-        this.promotionItems = items;
+        this.item = item;
         this.price = price;
     }
 }
 Promotion.prototype.getPromotionItems = function() {
-    return this.promotionItems;
+    return this.item;
+}
+Promotion.prototype.getPromotionId = function() {
+    return this.id;
 }
 Promotion.prototype.getPromotionName = function() {
     return this.name;
