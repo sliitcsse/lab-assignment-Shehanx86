@@ -9,19 +9,19 @@ export default class Promotions {
 Promotions.prototype.getPromotions = function() {
     return this.promotions;
 }
-Promotions.prototype.addPromotion = function(id, name, price, items) {
-    const promotion = this.promotions.find(promotion => promotion.id === id);
+Promotions.prototype.addPromotion = function(id, name, price, item) {
+    const promotion = this.promotions.find(promotion => promotion.getPromotionId() == id);
     if (promotion) return 'Promotion already exists!';
-    const newPromotion = new Promotion(id, name, price, items);
+    const newPromotion = new Promotion(id, name, price, item);
+    this.getPromotions().push(newPromotion);
     return newPromotion;
 }
-Promotion.prototype.removePromotionById = function(id) {
-    const promo = this.getPromotionItems(id);
-    let filtered = this.filter(promo => promo.id != id );
+Promotions.prototype.removePromotionById = function(id) {
+    let filtered = this.promotions.filter(promo => promo.getPromotionId() != id );
     this.promotions = filtered;
-    return promo;
+    return id;
 }
-Promotion.prototype.getPromotionById = function(id) {
-    const promo = this.promotions.find(promo => promo.id === id);
+Promotions.prototype.getPromotionById = function(id) {
+    const promo = this.promotions.find(promo => promo.getPromotionId() === id);
     return promo;
 }

@@ -18,4 +18,9 @@ const buyItem = (id) => axios.delete(`/inventory/items/${id}`);
 const editItem = (id, item) => axios.put(`/inventory/items/${id}`, item);
 const createItem = (item) => axios.post('/inventory/items', item);
 
-export {userLogin, createProfile, addItemToCart, fetchCart, removeItemFromCart, fetchItems, buyItem, addItemToWishlist, editItem, createItem, fetchWishlist, removeItemFromWishlist};
+const fetchPromotions = () => axios.get('/promotions');
+const createPromotion = (promo) => axios.post('/promotions', promo);
+const purchasePromotion = (id) => axios.put(`/promotions/${id}/purchase`);
+
+
+export {userLogin, createProfile, addItemToCart, fetchCart, removeItemFromCart, fetchItems, buyItem, addItemToWishlist, editItem, createItem, fetchWishlist, removeItemFromWishlist, fetchPromotions, createPromotion, purchasePromotion};

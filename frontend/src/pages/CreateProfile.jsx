@@ -31,8 +31,10 @@ export default function CreateProfile() {
       if (res.data === "User already exists!") {
         alert("User already exists with this email address!");
       } else {
+        const { email, role } = res.data;
         localStorage.setItem('email', email);
         localStorage.setItem('role', role);
+        window.location.href='/';
       }
 
     }
@@ -51,7 +53,7 @@ export default function CreateProfile() {
               <input
                 type="text"
                 name="name"
-                placeholder="Enter email"
+                placeholder="Enter name"
                 onChange={handleChange}
               />
             </div>

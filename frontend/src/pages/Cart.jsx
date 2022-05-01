@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchCart, removeItemFromCart } from "../API/api";
+import NavBar from "../components/navBar/NavBar";
 
 export default function Cart() {
     const [items, setItems] = useState([]);
@@ -24,13 +25,8 @@ export default function Cart() {
 
     return (
         <>
-            <ul>
-                <li><a href="items">Items</a></li>
-                <li><a href="promotions">Promotions</a></li>
-                <li><a href="cart">Cart</a></li>
-                <li><a href="wishlist">Wishlist</a></li>
-            </ul>
-
+            <NavBar role="Customer" />
+            <h1>Cart</h1>
             <table className="table">
                 <thead>
                     <tr>

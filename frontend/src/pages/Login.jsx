@@ -18,7 +18,6 @@ export default function Login() {
             default: {}
         }
     }
-
     const handeResponse = (res) => {
       if (res.data === "auth fail") {
         alert('Incorrect email or password!');
@@ -26,7 +25,7 @@ export default function Login() {
         const { email, role } = res.data;
         localStorage.setItem('email', email);
         localStorage.setItem('role', role);
-        
+        window.location.href='/';
       } 
     }
 
@@ -38,6 +37,7 @@ export default function Login() {
     return (
         <>
         <div>
+          <h1>Login</h1>
           <form>
             <div className="form-group">
               <label>Email</label>
@@ -57,9 +57,10 @@ export default function Login() {
                 onChange={handleChange}
               />
             </div>
-            <button type="button" onClick={handleSubmit}>
-              Submit
+            <button className="btn btn-success" onClick={handleSubmit}>
+              Login
             </button>
+            <a href="/signup">Create Profile</a>
           </form>
         </div>
       </>

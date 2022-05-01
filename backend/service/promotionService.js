@@ -1,14 +1,11 @@
 import {inventory, promotions} from "../fakeDatabase/index.js"
 
 const createPromotion = ctx => {
-    const { id, name, price, ...itemIds } = ctx.request.body;
-    const items = [];
-    itemIds.forEach(id => {
-        const item = inventory.getItemById(id);
-        inventory.removeItemById(id);
-        items.push(item);
-    });
-    const result = promotions.addPromotion(id, name, price, items);
+    const { id, name, price, itemId } = ctx.request.body;
+    const item = inventory.getItemById(itemId);
+    const removedItem = inventory.removeItemById(itemId);
+    if (removedItem === 'Item does not exist!') return ctx.body = removedItem;
+    const result = promotions.addPromotion(id, name, price, item);
     ctx.body = result;
 } 
 

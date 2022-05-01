@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { addItemToCart, addItemToWishlist, buyItem, createItem, editItem, fetchItems } from "../../API/api";
+import { createItem, editItem, fetchItems } from "../../API/api";
+import NavBar from "../../components/navBar/NavBar";
 
 export default function TraderHome() {
     const [items, setItems] = useState([]);
@@ -76,13 +77,8 @@ export default function TraderHome() {
     }
     return (
         <>
-            <ul>
-                <li><a href="items">Items</a></li>
-                <li><a href="promotions">Promotions</a></li>
-                <li><a href="cart">Cart</a></li>
-                <li><a href="wishlist">Wishlist</a></li>
-            </ul>
-
+            <NavBar />
+            <h1>Create Item</h1>
             <form>
                 <div className="form-group">
                 <label>Item Id</label>
@@ -133,6 +129,8 @@ export default function TraderHome() {
                     </button>
                 }   
             </form>
+            <br/>
+            <h1>Items</h1>
             <table className="table">
                 <thead>
                     <tr>
