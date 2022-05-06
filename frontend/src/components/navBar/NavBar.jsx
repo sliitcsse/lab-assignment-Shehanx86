@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function NavBar(props) {    
+export default function NavBar(props) {  
+    const [role, setRole] = useState();  
     useEffect(() => {
         const email = localStorage.getItem('email');
         const role = localStorage.getItem('role');
         if(!role || !email) return window.location.href="/login"; 
+        setRole(role);
     })
     const logout = () => {
         localStorage.removeItem("email");
@@ -20,15 +22,20 @@ export default function NavBar(props) {
                 <li className="nav-item">
                     <a className="nav-link" href="/promotions">Promotions</a>
                 </li>
-                {props.role == 'Customer' &&
-                <div>
+                {role == 'Customer' ?
+                <>
                     <li className="nav-item">
                         <a className="nav-link" href="/cart">cart</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/wishlist">Wishlist</a>
                     </li>
-                </div>
+                </> :
+                <>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/customers">Customers</a>
+                    </li>
+                </>
                 }
             </ul>
             <button className="btn" onClick={logout}>Logout</button>

@@ -1,19 +1,28 @@
 import { users } from "../fakeDatabase/index.js";
 
+//create user profile service function
 const createProfile = ctx => {
     const { name, email, password, role } = ctx.request.body;
     const result = users.createProfile(name, email, password, role);
-    // if (result === 'User already exists!') return ctx.status = 400;
-    // ctx.status = 201;
-    ctx.body = result
+    const status = result === 'User already exists!' ? 400 : 201;
+    ctx.status = status;
+    ctx.body = result;
 }
 
+//login function
 const login = ctx => {
     const { email, password } = ctx.request.body;
     const result = users.authenticateUser(email, password);
-    // if (result === 'auth fail') return ctx.status = 401;
-    // ctx.status = 200;
-    ctx.body = result
+    const status = result === 'auth fail' ? 401 : 200;
+    ctx.status = status;
+    ctx.body = result;
 }
 
-export { login, createProfile };
+//get users by filtering role customers
+const getCustomers = ctx => {
+    const result = users.getUsersByRole('Customer');
+    ctx.body = result;
+    ctx.status = 200;
+}
+
+export { login, createProfile, getCustomers };

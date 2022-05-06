@@ -5,6 +5,7 @@ import Cart from "./pages/Cart.jsx";
 import Wishlist from "./pages/Wishlist.jsx";
 import Home from "./pages/home/index.jsx";
 import Promotion from "./pages/promotions/index.js";
+import Customers from "./pages/Customers.jsx";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="cart/" element={<Cart />} />
           <Route path="wishlist/" element={<Wishlist />} />
           <Route path="/promotions" element={<Promotion/>} />
+          <Route path="/customers" element={<Customers/>} />
         </Routes>
       </BrowserRouter>
     </>

@@ -23,3 +23,7 @@ Users.prototype.authenticateUser = function(email, password){
 Users.prototype.getUserByEmail = function(email) {
     return this.users.find(user => user.email === email);
 }
+
+Users.prototype.getUsersByRole = function(role) {
+    return this.users.filter(user => user.role === role);
+}
